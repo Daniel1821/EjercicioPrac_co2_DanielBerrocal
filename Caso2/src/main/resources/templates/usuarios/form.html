@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+  <div>
+    <h2 th:text="${usuario.id} != null ? 'Editar usuario' : 'Nuevo usuario'">Nuevo usuario</h2>
+
+    <form th:action="${usuario.id} != null ? @{/usuarios/{id}/actualizar(id=${usuario.id})} : @{/usuarios/guardar}" method="post">
+      <div>
+        <label>Nombre</label>
+        <input type="text" name="nombre" th:value="${usuario.nombre}" required />
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" th:value="${usuario.email}" required />
+      </div>
+      <div>
+        <label>Contraseña</label>
+        <input type="password" name="password" th:value="${usuario.password}" th:attr="${usuario.id} != null ? '' : 'required'"/>
+        <small th:if="${usuario.id != null}">Dejar vacío para conservar la contraseña actual (implementación necesaria).</small>
+      </div>
+      <div>
+        <label>Rol</label>
+        <select name="rol.id" required>
+          <option value="" disabled th:if="${usuario.rol == null}" selected>-- Seleccionar rol --</option>
+          <option th:each="r : ${roles}"
+                  th:value="${r.id}"
+                  th:text="${r.nombre}"
+                  th:selected="${usuario.rol != null ? (r.id == usuario.rol.id) : false}">
+          </option>
+        </select>
+      </div>
+      <div>
+        <label>Activo</label>
+        <input type="checkbox" name="activo" th:checked="${usuario.activo}" />
+      </div>
+      <div>
+        <button type="submit">Guardar</button>
+        <a th:href="@{/usuarios}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</html>

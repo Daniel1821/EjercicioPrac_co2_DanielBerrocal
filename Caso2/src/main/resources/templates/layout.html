@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title th:replace="${title} ?: 'Plataforma Académica'">Plataforma</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+  <header>
+    <h1>Plataforma Académica</h1>
+    <nav>
+      <a th:href="@{/}">Inicio</a> |
+      <a th:href="@{/usuarios}">Usuarios</a> |
+      <a th:href="@{/roles}">Roles</a>
+    </nav>
+  </header>
+
+  <main>
+    <div th:replace="~{::content}"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 — Plataforma Académica</p>
+  </footer>
+</body>
+</html>
+

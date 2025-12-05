@@ -1,0 +1,31 @@
+<!-- extiende layout -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+  <div>
+    <h2>Usuarios</h2>
+    <a th:href="@{/usuarios/nuevo}">Crear nuevo usuario</a>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Nombre</th><th>Email</th><th>Rol</th><th>Activo</th><th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="u : ${usuarios}">
+          <td th:text="${u.id}">1</td>
+          <td th:text="${u.nombre}">Nombre</td>
+          <td th:text="${u.email}">mail</td>
+          <td th:text="${u.rol != null ? u.rol.nombre : '—'}">ROL</td>
+          <td th:text="${u.activo}">true</td>
+          <td>
+            <a th:href="@{|/usuarios/${u.id}|}">Ver</a>
+            <a th:href="@{|/usuarios/${u.id}/editar|}">Editar</a>
+            <form th:action="@{|/usuarios/${u.id}/eliminar|}" method="post" style="display:inline">
+              <button type="submit" onclick="return confirm('Eliminar usuario?')">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</html>

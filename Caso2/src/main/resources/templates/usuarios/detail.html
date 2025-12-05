@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+  <div>
+    <h2>Detalle usuario</h2>
+    <p><strong>ID:</strong> <span th:text="${usuario.id}"></span></p>
+    <p><strong>Nombre:</strong> <span th:text="${usuario.nombre}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${usuario.email}"></span></p>
+    <p><strong>Rol:</strong> <span th:text="${usuario.rol != null ? usuario.rol.nombre : '—'}"></span></p>
+    <p><strong>Activo:</strong> <span th:text="${usuario.activo}"></span></p>
+    <p><strong>Fecha creación:</strong> <span th:text="${usuario.fechaCreacion}"></span></p>
+    <a th:href="@{/usuarios}">Volver</a>
+  </div>
+</html>
+
